@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <import resource="dao.xml"/>
+
+    <bean id="userService" class="com.epam.spring.hometask.service.user.CinemaUserService">
+        <constructor-arg ref="userDao"/>
+    </bean>
+
+    <bean id="eventService" class="com.epam.spring.hometask.service.event.CinemaEventService">
+        <constructor-arg ref="eventsDao"/>
+    </bean>
+
+    <bean id="auditoriumService"
+          class="com.epam.spring.hometask.service.auditorium.CinemaAuditoriumService">
+        <constructor-arg ref="auditoriumDao"/>
+    </bean>
+
+    <bean id="bookingService"
+          class="com.epam.spring.hometask.service.booking.CinemaBookingService">
+        <constructor-arg ref="ticketDao"/>
+        <constructor-arg ref="eventsDao"/>
+    </bean>
+
+    <bean id="discountService"
+          class="com.epam.spring.hometask.service.discount.CinemaDiscountService"/>
+
+
+</beans>

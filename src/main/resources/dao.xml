@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <bean id="auditoriumDao" class="com.epam.spring.hometask.dao.Auditoriums"/>
+
+    <bean id="eventsDao" class="com.epam.spring.hometask.dao.Events"/>
+
+    <bean id="ticketDao" class="com.epam.spring.hometask.dao.Tickets"/>
+
+    <bean id="userDao" class="com.epam.spring.hometask.dao.Users"/>
+
+
+</beans>
