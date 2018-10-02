@@ -1,7 +1,6 @@
 package com.epam.spring.hometask.service.booking;
 
-import com.epam.spring.hometask.dao.Events;
-import com.epam.spring.hometask.dao.Tickets;
+import com.epam.spring.hometask.dao.ticket.CinemaTicketDao;
 import com.epam.spring.hometask.domain.Event;
 import com.epam.spring.hometask.domain.Ticket;
 import com.epam.spring.hometask.domain.User;
@@ -13,12 +12,10 @@ import java.util.Set;
 
 // ToDo methods implementations.
 public class CinemaBookingService implements BookingService {
-  private Tickets tickets;
-  private Events events;
+  private CinemaTicketDao tickets;
 
-  public CinemaBookingService(Tickets tickets, Events events) {
+  public CinemaBookingService(CinemaTicketDao tickets) {
     this.tickets = tickets;
-    this.events = events;
   }
 
   @Override

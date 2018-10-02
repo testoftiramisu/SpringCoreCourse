@@ -1,6 +1,6 @@
 package com.epam.spring.hometask.service.event;
 
-import com.epam.spring.hometask.dao.Events;
+import com.epam.spring.hometask.dao.event.CinemaEventDao;
 import com.epam.spring.hometask.domain.Event;
 
 import javax.annotation.Nonnull;
@@ -8,9 +8,9 @@ import javax.annotation.Nullable;
 import java.util.Collection;
 
 public class CinemaEventService implements EventService {
-  private Events events;
+  private CinemaEventDao events;
 
-  public CinemaEventService(Events events) {
+  public CinemaEventService(CinemaEventDao events) {
     this.events = events;
   }
 
@@ -28,10 +28,8 @@ public class CinemaEventService implements EventService {
 
   @Override
   public Event save(@Nonnull Event event) {
-    if (events.save(event)) {
-      return event;
-    }
-    return null;
+    Long id = events.save(event);
+    return event.setId(id);
   }
 
   @Override

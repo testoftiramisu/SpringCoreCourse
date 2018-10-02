@@ -1,7 +1,6 @@
 package com.epam.spring.hometask.domain;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -11,9 +10,13 @@ public class Auditorium {
 
   private String name;
   private long numberOfSeats;
-  private Set<Long> vipSeats = Collections.emptySet();
+  private Set<Long> vipSeats;
 
-  public Auditorium() {}
+  public Auditorium(String name, String numberOfSeats, Set<Long> vipSeats) {
+    this.name = name;
+    this.numberOfSeats = Long.parseLong(numberOfSeats);
+    this.vipSeats = vipSeats;
+  }
 
   /**
    * Counts how many vip seats are there in supplied <code>seats</code>

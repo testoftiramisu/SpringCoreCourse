@@ -4,13 +4,22 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
  		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-    <bean id="auditoriumDao" class="com.epam.spring.hometask.dao.Auditoriums"/>
+    <bean id="auditoriumDao" class="com.epam.spring.hometask.dao.auditorium.CinemaAuditoriumDao">
+        <constructor-arg ref="idGeneratorService"/>
+    </bean>
 
-    <bean id="eventsDao" class="com.epam.spring.hometask.dao.Events"/>
+    <bean id="eventsDao" class="com.epam.spring.hometask.dao.event.CinemaEventDao">
+        <constructor-arg ref="idGeneratorService"/>
+    </bean>
 
-    <bean id="ticketDao" class="com.epam.spring.hometask.dao.Tickets"/>
 
-    <bean id="userDao" class="com.epam.spring.hometask.dao.Users"/>
+    <bean id="ticketDao" class="com.epam.spring.hometask.dao.ticket.CinemaTicketDao"/>
 
+    <bean id="userDao" class="com.epam.spring.hometask.dao.user.CinemaUserDao">
+        <constructor-arg ref="idGeneratorService"/>
+    </bean>
+
+    <bean id="idGeneratorService"
+          class="com.epam.spring.hometask.service.id.RandomIdGeneratorService"/>
 
 </beans>

@@ -9,8 +9,6 @@ import java.time.LocalDateTime;
 
 public class CinemaDiscountService implements DiscountService {
 
-  public CinemaDiscountService() {}
-
   // ToDo method implementation
   @Override
   public byte getDiscount(

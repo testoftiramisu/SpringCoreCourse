@@ -1,28 +1,29 @@
-package com.epam.spring.hometask.dao;
+package com.epam.spring.hometask.dao.event;
 
 import com.epam.spring.hometask.domain.Event;
+import com.epam.spring.hometask.service.id.IdGeneratorService;
 import com.google.common.collect.ImmutableSet;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Events {
-  private static Map<Long, Event> events;
-  private Long baseId;
+public class CinemaEventDao {
+  private Map<Long, Event> events;
+  private IdGeneratorService idGeneratorService;
 
-  public Events() {
+  public CinemaEventDao(IdGeneratorService idGeneratorService) {
     events = new HashMap<>();
-    baseId = 10000L;
+    this.idGeneratorService = idGeneratorService;
   }
 
-  /** Returns all {@code Event} from storage. */
+  /** Returns all {@link Event} from storage. */
   public Collection<Event> getAll() {
     return ImmutableSet.copyOf(events.values());
   }
 
   /**
-   * Returns {@code Event} by id from storage if found, returns null otherwise.
+   * Returns {@link Event} by id from storage if found, returns null otherwise.
    *
    * @param id id of the object
    */
@@ -34,21 +35,23 @@ public class Events {
   }
 
   /**
-   * Returns true when {@code Event} saved in storage, returns false otherwise.
+   * Returns id of {@code Event} saved in storage.
    *
    * @param event that needs to be saved in storage
    */
-  public boolean save(Event event) {
-    try {
-      events.put(baseId + 1, event);
-      return true;
-    } catch (NullPointerException ex) {
-      return false;
+  public Long save(Event event) {
+    Long id = idGeneratorService.generateId();
+
+    while (events.containsKey(id)) {
+      id = idGeneratorService.generateId();
     }
+
+    events.put(id, event);
+    return id;
   }
 
   /**
-   * Returns given Event from storage, if present.
+   * Removes {@link Event} from storage, if present.
    *
    * @param event for removing
    */
@@ -57,6 +60,7 @@ public class Events {
       Event currentEvent = events.get(id);
       if (currentEvent.equals(event)) {
         events.remove(id);
+        break;
       }
     }
   }

@@ -1,6 +1,6 @@
 package com.epam.spring.hometask.service.auditorium;
 
-import com.epam.spring.hometask.dao.Auditoriums;
+import com.epam.spring.hometask.dao.auditorium.CinemaAuditoriumDao;
 import com.epam.spring.hometask.domain.Auditorium;
 
 import javax.annotation.Nonnull;
@@ -9,9 +9,9 @@ import java.util.Set;
 
 public class CinemaAuditoriumService implements AuditoriumService {
 
-  private Auditoriums auditoriums = new Auditoriums();
+  private CinemaAuditoriumDao auditoriums;
 
-  public CinemaAuditoriumService(Auditoriums auditoriums) {
+  public CinemaAuditoriumService(CinemaAuditoriumDao auditoriums) {
     this.auditoriums = auditoriums;
   }
 

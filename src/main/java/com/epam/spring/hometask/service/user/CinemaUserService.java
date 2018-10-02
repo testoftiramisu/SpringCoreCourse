@@ -1,6 +1,6 @@
 package com.epam.spring.hometask.service.user;
 
-import com.epam.spring.hometask.dao.Users;
+import com.epam.spring.hometask.dao.user.UserDao;
 import com.epam.spring.hometask.domain.User;
 
 import javax.annotation.Nonnull;
@@ -8,9 +8,9 @@ import javax.annotation.Nullable;
 import java.util.Collection;
 
 public class CinemaUserService implements UserService {
-  private Users users;
+  private UserDao users;
 
-  public CinemaUserService(Users users) {
+  public CinemaUserService(UserDao users) {
     this.users = users;
   }
 
@@ -22,10 +22,8 @@ public class CinemaUserService implements UserService {
 
   @Override
   public User save(@Nonnull User user) {
-    if (users.save(user)) {
-      return user;
-    }
-    return null;
+    Long id = users.save(user);
+    return user.setId(id);
   }
 
   @Override

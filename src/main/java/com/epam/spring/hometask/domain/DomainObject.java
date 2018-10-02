@@ -8,7 +8,8 @@ public class DomainObject {
     return id;
   }
 
-  public void setId(Long id) {
+  public <T extends DomainObject> T setId(Long id) {
     this.id = id;
+    return (T) this;
   }
 }
