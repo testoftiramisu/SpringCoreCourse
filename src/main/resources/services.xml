@@ -9,7 +9,7 @@
     </bean>
 
     <bean id="eventService" class="com.epam.spring.hometask.service.event.CinemaEventService">
-        <constructor-arg ref="eventsDao"/>
+        <constructor-arg ref="eventDao"/>
     </bean>
 
     <bean id="auditoriumService"
@@ -20,6 +20,7 @@
     <bean id="bookingService"
           class="com.epam.spring.hometask.service.booking.CinemaBookingService">
         <constructor-arg ref="ticketDao"/>
+        <constructor-arg ref="eventDao"/>
     </bean>
 
     <bean id="discountService"

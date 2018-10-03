@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CinemaEventDao {
+public class CinemaEventDao implements EventDao {
   private Map<Long, Event> events;
   private IdGeneratorService idGeneratorService;
 
@@ -17,7 +17,17 @@ public class CinemaEventDao {
     this.idGeneratorService = idGeneratorService;
   }
 
+  /**
+   * Stores all {@link Event} from provided collection.
+   *
+   * @param events Collection of {@link Event}
+   */
+  public void setEvents(Collection<Event> events) {
+    events.forEach(this::save);
+  }
+
   /** Returns all {@link Event} from storage. */
+  @Override
   public Collection<Event> getAll() {
     return ImmutableSet.copyOf(events.values());
   }
@@ -27,6 +37,7 @@ public class CinemaEventDao {
    *
    * @param id id of the object
    */
+  @Override
   public Event getById(Long id) {
     if (events.containsKey(id)) {
       return events.get(id);
@@ -39,6 +50,7 @@ public class CinemaEventDao {
    *
    * @param event that needs to be saved in storage
    */
+  @Override
   public Long save(Event event) {
     Long id = idGeneratorService.generateId();
 
@@ -55,6 +67,7 @@ public class CinemaEventDao {
    *
    * @param event for removing
    */
+  @Override
   public void remove(Event event) {
     for (Long id : events.keySet()) {
       Event currentEvent = events.get(id);

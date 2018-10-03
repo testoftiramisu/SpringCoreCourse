@@ -6,65 +6,108 @@ import org.junit.Test;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.NavigableSet;
+import java.util.TreeSet;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestEvent {
+  private final String EVENT_NAME = "Test Event Name";
   private Event event;
   private Auditorium auditorium;
+  private LocalDateTime nowTime;
+  private LocalDate nowDate;
 
   @Before
   public void initEvent() {
     event = new Event();
     event.setBasePrice(1.1);
-    event.setName("aaa");
+    event.setName(EVENT_NAME);
     event.setRating(EventRating.HIGH);
 
-    LocalDateTime now = LocalDateTime.now();
+    nowTime = LocalDateTime.now();
+    nowDate = LocalDate.now();
 
-    event.addAirDateTime(now);
-    event.addAirDateTime(now.plusDays(1));
-    event.addAirDateTime(now.plusDays(2));
+    event.addAirDateTime(nowTime);
+    event.addAirDateTime(nowTime.plusDays(1));
+    event.addAirDateTime(nowTime.plusDays(2));
 
     auditorium = new Auditorium("test", "10", Collections.emptySet());
+  }
+
+  @Test
+  public void shouldAddAirDateTime() {
+    assertThat(event.addAirDateTime(nowTime.plusDays(1))).isFalse();
+    assertThat(event.addAirDateTime(nowTime.plusDays(10))).isTrue();
+  }
+
+  @Test
+  public void shouldReturnName() {
+    assertThat(event.getName()).isEqualTo(EVENT_NAME);
+  }
+
+  @Test
+  public void shouldStoreAirDates() {
+    NavigableSet<LocalDateTime> airDates = new TreeSet<>();
+    airDates.add(nowTime.plusDays(5));
+    airDates.add(nowTime.plusDays(10));
+
+    event.setAirDates(airDates);
+
+    assertThat(event.getAirDates()).containsAll(airDates);
+  }
+
+  @Test
+  public void shouldReturnBasePrice() {
+    assertThat(event.getBasePrice()).isEqualTo(1.1);
+  }
+
+  @Test
+  public void shouldReturnRating() {
+    assertThat(event.getRating()).isEqualTo(EventRating.HIGH);
   }
 
   @Test
   public void testAddRemoveAirDates() {
     int size = event.getAirDates().size();
 
-    LocalDateTime date = LocalDateTime.now().plusDays(5);
-
-    event.addAirDateTime(date);
+    nowTime = nowTime.plusDays(5);
+    event.addAirDateTime(nowTime);
 
     assertThat(event.getAirDates().size()).isEqualTo(size + 1);
-    assertThat(event.getAirDates()).contains(date);
+    assertThat(event.getAirDates()).contains(nowTime);
 
-    event.removeAirDateTime(date);
+    event.removeAirDateTime(nowTime);
 
     assertThat(event.getAirDates().size()).isEqualTo(size);
-    assertThat(event.getAirDates()).doesNotContain(date);
+    assertThat(event.getAirDates()).doesNotContain(nowTime);
   }
 
   @Test
   public void testCheckAirDates() {
-    LocalDate now = LocalDate.now();
+    assertThat(event.airsOnDate(nowDate)).isTrue();
+    assertThat(event.airsOnDate(nowDate.plusDays(1))).isTrue();
+    assertThat(event.airsOnDate(nowDate.plusDays(2))).isTrue();
+    assertThat(event.airsOnDate(nowDate.plusDays(10))).isFalse();
+  }
 
-    assertThat(event.airsOnDates(now, now.plusDays(10))).isTrue();
-    assertThat(event.airsOnDates(now.minusDays(10), now.plusDays(10))).isTrue();
-    assertThat(event.airsOnDates(now.plusDays(1), now.plusDays(1))).isTrue();
-    assertThat(event.airsOnDates(now.minusDays(10), now.minusDays(5))).isFalse();
+  @Test
+  public void testCheckAirDate() {
+    assertThat(event.airsOnDates(nowDate, nowDate.plusDays(10))).isTrue();
+    assertThat(event.airsOnDates(nowDate.minusDays(10), nowDate.plusDays(10))).isTrue();
+    assertThat(event.airsOnDates(nowDate.plusDays(1), nowDate.plusDays(1))).isTrue();
+    assertThat(event.airsOnDates(nowDate.minusDays(10), nowDate.minusDays(5))).isFalse();
   }
 
   @Test
   public void testCheckAirTimes() {
-    LocalDateTime time = LocalDateTime.now().plusHours(4);
-    event.addAirDateTime(time);
+    nowTime = nowTime.plusHours(4);
+    event.addAirDateTime(nowTime);
 
-    assertThat(event.airsOnDateTime(time)).isTrue();
+    assertThat(event.airsOnDateTime(nowTime)).isTrue();
 
-    time = time.plusHours(30);
-    assertThat(event.airsOnDateTime(time)).isFalse();
+    nowTime = nowTime.plusHours(30);
+    assertThat(event.airsOnDateTime(nowTime)).isFalse();
   }
 
   @Test
@@ -81,25 +124,25 @@ public class TestEvent {
 
   @Test
   public void testAddRemoveAuditoriumsWithAirDates() {
-    LocalDateTime time = LocalDateTime.now().plusDays(10);
+    nowTime = nowTime.plusDays(10);
     assertThat(event.getAuditoriums()).isEmpty();
 
-    event.addAirDateTime(time, auditorium);
+    event.addAirDateTime(nowTime, auditorium);
     assertThat(event.getAuditoriums()).isNotEmpty();
 
-    event.removeAirDateTime(time);
+    event.removeAirDateTime(nowTime);
     assertThat(event.getAuditoriums()).isEmpty();
   }
 
   @Test
   public void testNotAddAuditoriumWithoutCorrectDate() {
-    LocalDateTime time = LocalDateTime.now().plusDays(10);
-    boolean result = event.assignAuditorium(time, auditorium);
+    nowTime = nowTime.plusDays(10);
+    boolean result = event.assignAuditorium(nowTime, auditorium);
 
     assertThat(result).isFalse();
     assertThat(event.getAuditoriums()).isEmpty();
 
-    result = event.removeAirDateTime(time);
+    result = event.removeAirDateTime(nowTime);
     assertThat(result).isFalse();
     assertThat(event.getAuditoriums()).isEmpty();
   }

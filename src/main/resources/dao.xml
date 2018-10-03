@@ -8,7 +8,7 @@
         <constructor-arg ref="idGeneratorService"/>
     </bean>
 
-    <bean id="eventsDao" class="com.epam.spring.hometask.dao.event.CinemaEventDao">
+    <bean id="eventDao" class="com.epam.spring.hometask.dao.event.CinemaEventDao">
         <constructor-arg ref="idGeneratorService"/>
     </bean>
 

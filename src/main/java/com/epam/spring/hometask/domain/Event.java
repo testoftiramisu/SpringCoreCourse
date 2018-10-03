@@ -95,7 +95,7 @@ public class Event extends DomainObject {
   /**
    * Checks if event airs on particular date.
    *
-   * @param date Date to ckeck
+   * @param date Date to check
    * @return <code>true</code> event airs on that date
    */
   public boolean airsOnDate(LocalDate date) {

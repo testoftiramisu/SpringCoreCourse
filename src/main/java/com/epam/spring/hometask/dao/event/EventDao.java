@@ -20,8 +20,9 @@ public interface EventDao {
    * Saves an {@link Event}.
    *
    * @param event that needs to be saved
+   * @return id of saved {@link Event}
    */
-  void save(Event event);
+  Long save(Event event);
 
   /**
    * Returns given {@link Event}
