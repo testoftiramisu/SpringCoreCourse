@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CinemaAuditoriumServiceTest {
 
   private final ClassPathXmlApplicationContext context =
-      new ClassPathXmlApplicationContext("auditorium-service-test.xml");
+      new ClassPathXmlApplicationContext("spring/service/auditorium-service-test.xml");
   private final Auditorium auditorium = context.getBean("imax", Auditorium.class);
   private AuditoriumService service;
 

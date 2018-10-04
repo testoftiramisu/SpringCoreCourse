@@ -18,14 +18,14 @@ public class TestAuditorium {
   }
 
   @Test
-  public void testCountVips() {
+  public void shouldCountVipSeats() {
     assertEquals(0, auditorium.countVipSeats(Arrays.asList(10L, 20L, 30L)));
     assertEquals(1, auditorium.countVipSeats(Arrays.asList(10L, 2L, 30L)));
     assertEquals(2, auditorium.countVipSeats(Arrays.asList(10L, 2L, 3L, 4L, 5L, 6L)));
   }
 
   @Test
-  public void testGetAllSeats() {
+  public void shouldReturnAllSeats() {
     assertEquals(10, auditorium.getAllSeats().size());
   }
 }

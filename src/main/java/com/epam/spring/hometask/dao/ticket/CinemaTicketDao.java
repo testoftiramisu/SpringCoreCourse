@@ -32,6 +32,11 @@ public class CinemaTicketDao implements TicketDao {
     return ImmutableSet.copyOf(tickets.values());
   }
 
+  /**
+   * Returns an {@link Ticket} object by id.
+   *
+   * @param id id of the object
+   */
   @Override
   public Ticket getById(Long id) {
     if (tickets.containsKey(id)) {
@@ -40,6 +45,12 @@ public class CinemaTicketDao implements TicketDao {
     return null;
   }
 
+  /**
+   * Saves an {@link Ticket}.
+   *
+   * @param ticket that needs to be saved
+   * @return id of saved {@link Ticket}
+   */
   @Override
   public Long save(Ticket ticket) {
     Long id = idGeneratorService.generateId();
@@ -52,6 +63,11 @@ public class CinemaTicketDao implements TicketDao {
     return id;
   }
 
+  /**
+   * Returns given {@link Ticket}
+   *
+   * @param ticket for removing
+   */
   @Override
   public void remove(Ticket ticket) {
     for (Long id : tickets.keySet()) {

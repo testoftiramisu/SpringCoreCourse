@@ -116,46 +116,57 @@ public class Event extends DomainObject {
             dt -> dt.toLocalDate().compareTo(from) >= 0 && dt.toLocalDate().compareTo(to) <= 0);
   }
 
+  /** Returns {@link Event} name. */
   public String getName() {
     return name;
   }
 
+  /** Sets {@link Event} name. */
   public void setName(String name) {
     this.name = name;
   }
 
+  /** Returns Set of air dates. */
   public NavigableSet<LocalDateTime> getAirDates() {
     return airDates;
   }
 
+  /** Sets air dates. */
   public void setAirDates(NavigableSet<LocalDateTime> airDates) {
     this.airDates = airDates;
   }
 
+  /** Returns base price. */
   public double getBasePrice() {
     return basePrice;
   }
 
+  /** Sets base price. */
   public void setBasePrice(double basePrice) {
     this.basePrice = basePrice;
   }
 
+  /** Returns {@link Event} rating. */
   public EventRating getRating() {
     return rating;
   }
 
+  /** Sets rating for given {@link Event}. */
   public void setRating(EventRating rating) {
     this.rating = rating;
   }
 
+  /** Returns map of {@link Auditorium} where this {@link Event} is happens. */
   public NavigableMap<LocalDateTime, Auditorium> getAuditoriums() {
     return auditoriums;
   }
 
+  /** Set {@link Auditorium} where this {@link Event} will happens. */
   public void setAuditoriums(NavigableMap<LocalDateTime, Auditorium> auditoriums) {
     this.auditoriums = auditoriums;
   }
 
+  /** Returns hashcode. */
   @Override
   public int hashCode() {
     return Objects.hash(name);

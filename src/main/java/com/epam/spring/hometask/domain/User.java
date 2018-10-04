@@ -17,43 +17,53 @@ public class User extends DomainObject {
     this.email = email;
   }
 
+  /** Returns {@link User} first name. */
   public String getFirstName() {
     return firstName;
   }
 
+  /** Sets {@link User} first name. */
   public void setFirstName(String firstName) {
     this.firstName = firstName;
   }
 
+  /** Returns {@link User} last name. */
   public String getLastName() {
     return lastName;
   }
 
+  /** Sets {@link User} last name. */
   public void setLastName(String lastName) {
     this.lastName = lastName;
   }
 
+  /** Returns {@link User} email. */
   public String getEmail() {
     return email;
   }
 
+  /** Sets {@link User} email. */
   public void setEmail(String email) {
     this.email = email;
   }
 
+  /** Returns {@link User} tickets. */
   public NavigableSet<Ticket> getTickets() {
     return tickets;
   }
 
+  /** Sets {@link User} ticket. */
   public void setTickets(NavigableSet<Ticket> tickets) {
     this.tickets = tickets;
   }
 
+  /** Returns {@link User} hashcode. */
   @Override
   public int hashCode() {
     return Objects.hash(firstName, lastName, email);
   }
 
+  /** Compare {@link User} with other object. */
   @Override
   public boolean equals(Object obj) {
     if (this == obj) {

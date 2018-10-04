@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CinemaEventDaoTest {
   private final ClassPathXmlApplicationContext context =
-      new ClassPathXmlApplicationContext("event-dao-test.xml");
+      new ClassPathXmlApplicationContext("spring/dao/event-dao-test.xml");
   private EventDao eventDao;
   private Event event;
 
@@ -20,26 +20,26 @@ public class CinemaEventDaoTest {
   }
 
   @Test
-  public void shouldReturnAll() {
+  public void shouldReturnAllEvents() {
     assertThat(eventDao.getAll()).isNotEmpty();
   }
 
   @Test
-  public void shouldSaveAndGetById() {
+  public void shouldSaveEventAndGetItById() {
     Long id = eventDao.save(event);
 
     assertThat(eventDao.getById(id)).isEqualTo(event);
   }
 
   @Test
-  public void shouldSave() {
+  public void shouldSaveEvent() {
     eventDao.save(event);
 
     assertThat(eventDao.getAll()).contains(event);
   }
 
   @Test
-  public void remove() {
+  public void shouldRemoveEvent() {
     eventDao.save(event);
 
     eventDao.remove(event);

@@ -14,28 +14,46 @@ public class CinemaUserService implements UserService {
     this.users = users;
   }
 
+  /**
+   * Returns user by email or null.
+   *
+   * @param email Email of the user
+   */
   @Nullable
   @Override
   public User getUserByEmail(@Nonnull String email) {
+    for (User user : users.getAll()) {
+      if (user.getEmail().equals(email)) {
+        return user;
+      }
+    }
     return null;
   }
 
+  /**
+   * Saves {@link User} in the storage.
+   *
+   * @return saved user with id
+   */
   @Override
   public User save(@Nonnull User user) {
     Long id = users.save(user);
     return user.setId(id);
   }
 
+  /** Removes {@link User} from the storage. */
   @Override
   public void remove(@Nonnull User user) {
     users.remove(user);
   }
 
+  /** Returns user by id. */
   @Override
   public User getById(@Nonnull Long id) {
     return users.getById(id);
   }
 
+  /** Returns all users from the storage. */
   @Nonnull
   @Override
   public Collection<User> getAll() {

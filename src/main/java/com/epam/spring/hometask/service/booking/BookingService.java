@@ -41,4 +41,16 @@ public interface BookingService {
    */
   public @Nonnull Set<Ticket> getPurchasedTicketsForEvent(
       @Nonnull Event event, @Nonnull LocalDateTime dateTime);
+
+  /** Returns coefficient for Vip seats price. */
+  double getVipSeatsCoefficient();
+
+  /** Sets coefficient for Vip seats price. */
+  void setVipSeatsCoefficient(double coefficient);
+
+  /** Returns coefficient for High rate price. */
+  double getHighRateCoefficient();
+
+  /** Sets coefficient for High rate price. */
+  void setHighRateCoefficient(double coefficient);
 }

@@ -1,29 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
- 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
-
-    <import resource="id-generator-service.xml"/>
-
-    <bean id="eventDao" class="com.epam.spring.hometask.dao.event.CinemaEventDao">
-        <constructor-arg ref="idGeneratorService"/>
-        <property name="events">
-            <ref bean="testEventOne"/>
-        </property>
-
-    </bean>
-
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="testEventOne" class="com.epam.spring.hometask.domain.Event">
         <property name="name" value="Test Event One"/>
-        <property name="rating" value="MID"/>
+        <property name="rating" value="HIGH"/>
+        <property name="basePrice" value="8"/>
     </bean>
 
     <bean id="testEventTwo" class="com.epam.spring.hometask.domain.Event">
         <property name="name" value="Test Event Two"/>
         <property name="rating" value="MID"/>
+        <property name="basePrice" value="10"/>
     </bean>
 
 </beans>
-

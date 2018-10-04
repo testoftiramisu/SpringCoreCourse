@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CinemaEventServiceTest {
 
   private final ClassPathXmlApplicationContext context =
-      new ClassPathXmlApplicationContext("event-service-test.xml");
+      new ClassPathXmlApplicationContext("spring/service/event-service-test.xml");
   private final Event testEventOne = context.getBean("testEventOne", Event.class);
   private final Event testEventTwo = context.getBean("testEventTwo", Event.class);
   private EventService service;

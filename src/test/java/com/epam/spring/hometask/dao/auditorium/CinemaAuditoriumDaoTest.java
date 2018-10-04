@@ -13,7 +13,7 @@ public class CinemaAuditoriumDaoTest {
   private static final String MULTIKINO = "Multikino";
   private static final String IMAX = "IMAX";
   private ClassPathXmlApplicationContext context =
-      new ClassPathXmlApplicationContext("auditorium-dao-test.xml");
+      new ClassPathXmlApplicationContext("spring/dao/auditorium-dao-test.xml");
   private AuditoriumDao auditoriumDao;
   private Auditorium newAuditorium;
 
@@ -29,12 +29,12 @@ public class CinemaAuditoriumDaoTest {
   }
 
   @Test
-  public void getAll() {
+  public void shouldReturnAllValues() {
     assertThat(auditoriumDao.getAll()).isNotEmpty();
   }
 
   @Test
-  public void addAuditorium() {
+  public void shouldAddAuditorium() {
     assertThat(auditoriumDao.findByName(MULTIKINO)).isNull();
 
     auditoriumDao.addAuditorium(newAuditorium);
@@ -43,7 +43,7 @@ public class CinemaAuditoriumDaoTest {
   }
 
   @Test
-  public void setAuditoriums() {
+  public void shouldSetAuditoriums() {
     assertThat(auditoriumDao.findByName(MULTIKINO)).isNull();
 
     auditoriumDao.setAuditoriums(Collections.singletonList(newAuditorium));
@@ -52,7 +52,7 @@ public class CinemaAuditoriumDaoTest {
   }
 
   @Test
-  public void findByName() {
+  public void shouldFindByName() {
     assertThat(auditoriumDao.findByName(IMAX)).isNotNull();
   }
 }

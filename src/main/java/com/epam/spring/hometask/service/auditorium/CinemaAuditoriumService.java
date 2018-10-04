@@ -15,12 +15,18 @@ public class CinemaAuditoriumService implements AuditoriumService {
     this.auditoriums = auditoriums;
   }
 
+  /** Returns all auditoriums. */
   @Nonnull
   @Override
   public Set<Auditorium> getAll() {
     return auditoriums.getAll();
   }
 
+  /**
+   * Returns auditorium found by the given name or returns null.
+   *
+   * @param name Name of the auditorium
+   */
   @Nullable
   @Override
   public Auditorium getByName(@Nonnull String name) {

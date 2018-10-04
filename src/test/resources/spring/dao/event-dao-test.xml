@@ -4,11 +4,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
  		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-    <import resource="auditorium-dao-test.xml"/>
+    <import resource="../service/id-generator-service.xml"/>
+    <import resource="../domain/events.xml"/>
 
-    <bean id="auditoriumService"
-          class="com.epam.spring.hometask.service.auditorium.CinemaAuditoriumService">
-        <constructor-arg ref="auditoriumDao"/>
+    <bean id="eventDao" class="com.epam.spring.hometask.dao.event.CinemaEventDao">
+        <constructor-arg ref="idGeneratorService"/>
+        <property name="events" ref="testEventOne"/>
     </bean>
 
 </beans>
+

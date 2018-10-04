@@ -15,14 +15,42 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 public class CinemaBookingService implements BookingService {
-  private final double vipSeatsCoefficient = 2D;
-  private final double highRateCoefficient = 1.2D;
+  private double vipSeatsCoefficient;
+  private double highRateCoefficient;
   private TicketDao tickets;
 
   public CinemaBookingService(TicketDao tickets, EventDao events) {
     this.tickets = tickets;
   }
 
+  /** Returns coefficient for Vip seats price. */
+  public double getVipSeatsCoefficient() {
+    return vipSeatsCoefficient;
+  }
+
+  /** Sets coefficient for Vip seats price. */
+  public void setVipSeatsCoefficient(double vipSeatsCoefficient) {
+    this.vipSeatsCoefficient = vipSeatsCoefficient;
+  }
+
+  /** Returns coefficient for High rate price. */
+  public double getHighRateCoefficient() {
+    return highRateCoefficient;
+  }
+
+  /** Sets coefficient for High rate price. */
+  public void setHighRateCoefficient(double highRateCoefficient) {
+    this.highRateCoefficient = highRateCoefficient;
+  }
+
+  /**
+   * Returns total price when purchase all selected seats for particular event.
+   *
+   * @param event event to get base ticket price, vip seats and other information
+   * @param dateTime date and time of event air
+   * @param user user that buys ticket (could be needed to calculate discount, could be null)
+   * @param seats set of seat numbers that user wants to buy
+   */
   @Override
   public double getTicketsPrice(
       @Nonnull Event event,
@@ -46,17 +74,29 @@ public class CinemaBookingService implements BookingService {
     return ticketsPrice;
   }
 
+  /**
+   * Books tickets in internal system. If user is not <code>null</code> in a ticket then booked
+   * tickets are saved with it.
+   *
+   * @param tickets Set of tickets
+   */
   @Override
   public void bookTickets(@Nonnull Set<Ticket> tickets) {
     for (Ticket ticket : tickets) {
       User user = ticket.getUser();
-      if (user.getId() != null) {
+      if (user != null) {
         user.getTickets().add(ticket);
       }
       this.tickets.save(ticket);
     }
   }
 
+  /**
+   * Returns set of all purchased tickets for event on specific air date and time.
+   *
+   * @param event Event to get tickets for
+   * @param dateTime Date and time of airing of event
+   */
   @Nonnull
   @Override
   public Set<Ticket> getPurchasedTicketsForEvent(

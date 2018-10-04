@@ -10,12 +10,24 @@ import java.util.Map;
 
 public class CinemaUserDao implements UserDao {
 
-  private static Map<Long, User> users;
+  private Map<Long, User> users;
   private IdGeneratorService idGeneratorService;
 
   public CinemaUserDao(IdGeneratorService idGeneratorService) {
     users = new HashMap<>();
     this.idGeneratorService = idGeneratorService;
+  }
+
+  /** Returns users. */
+  public Map<Long, User> getUsers() {
+    return users;
+  }
+
+  /** Sets users. */
+  public void setUsers(Collection<User> users) {
+    for (User user : users) {
+      this.save(user);
+    }
   }
 
   /** Returns all {@link User} from the storage. */

@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CinemaTicketDaoTest {
 
   private final ClassPathXmlApplicationContext context =
-      new ClassPathXmlApplicationContext("ticket-dao-test.xml");
+      new ClassPathXmlApplicationContext("spring/dao/ticket-dao-test.xml");
   private TicketDao ticketDao;
   private Ticket ticketTwo;
 

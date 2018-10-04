@@ -68,7 +68,7 @@ public class TestEvent {
   }
 
   @Test
-  public void testAddRemoveAirDates() {
+  public void shouldAddAndRemoveAirDates() {
     int size = event.getAirDates().size();
 
     nowTime = nowTime.plusDays(5);
@@ -84,7 +84,7 @@ public class TestEvent {
   }
 
   @Test
-  public void testCheckAirDates() {
+  public void checkAirDates() {
     assertThat(event.airsOnDate(nowDate)).isTrue();
     assertThat(event.airsOnDate(nowDate.plusDays(1))).isTrue();
     assertThat(event.airsOnDate(nowDate.plusDays(2))).isTrue();
@@ -92,7 +92,7 @@ public class TestEvent {
   }
 
   @Test
-  public void testCheckAirDate() {
+  public void checkAirDate() {
     assertThat(event.airsOnDates(nowDate, nowDate.plusDays(10))).isTrue();
     assertThat(event.airsOnDates(nowDate.minusDays(10), nowDate.plusDays(10))).isTrue();
     assertThat(event.airsOnDates(nowDate.plusDays(1), nowDate.plusDays(1))).isTrue();
@@ -100,7 +100,7 @@ public class TestEvent {
   }
 
   @Test
-  public void testCheckAirTimes() {
+  public void checkAirTimes() {
     nowTime = nowTime.plusHours(4);
     event.addAirDateTime(nowTime);
 
@@ -111,7 +111,7 @@ public class TestEvent {
   }
 
   @Test
-  public void testAddRemoveAuditoriums() {
+  public void shouldAddAndRemoveAuditoriums() {
     LocalDateTime time = event.getAirDates().first();
     assertThat(event.getAuditoriums()).isEmpty();
 
@@ -123,7 +123,7 @@ public class TestEvent {
   }
 
   @Test
-  public void testAddRemoveAuditoriumsWithAirDates() {
+  public void shouldAddAndRemoveAuditoriumsWithAirDates() {
     nowTime = nowTime.plusDays(10);
     assertThat(event.getAuditoriums()).isEmpty();
 
@@ -135,7 +135,7 @@ public class TestEvent {
   }
 
   @Test
-  public void testNotAddAuditoriumWithoutCorrectDate() {
+  public void shouldNotAddAuditoriumWithoutCorrectDate() {
     nowTime = nowTime.plusDays(10);
     boolean result = event.assignAuditorium(nowTime, auditorium);
 
