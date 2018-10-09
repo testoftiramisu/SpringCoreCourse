@@ -7,23 +7,28 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.time.LocalDateTime;
 
-// ToDo: unit tests for birthday strategy.
 public class BirthdayStrategy implements DiscountStrategy {
-  private double discount;
-  private byte allowedDaysDifference;
+  private byte discount;
+  private byte discountPeriod;
+
+  public BirthdayStrategy(byte discount, byte discountPeriod) {
+    this.discount = discount;
+    this.discountPeriod = discountPeriod;
+  }
 
   @Override
-  public double calculateDiscount(
+  public byte calculateDiscount(
       @Nullable User user,
       @Nonnull Event event,
       @Nonnull LocalDateTime dateTime,
       long numberOfTickets) {
-    int dayOfBirthday = user.getBirthday().getDayOfYear();
-    int dayOfEvent = dateTime.getDayOfYear();
+    if (user == null || user.getBirthday() == null) {
+      return 0;
+    }
 
-    int daysDifference = Math.abs(dayOfBirthday - dayOfEvent);
+    int currentDifference = user.getBirthday().getDayOfYear() - dateTime.getDayOfYear();
 
-    if (dayOfBirthday >= dayOfEvent && daysDifference <= allowedDaysDifference) {
+    if (currentDifference > 0 && currentDifference <= discountPeriod) {
       return discount;
     }
 
@@ -36,17 +41,17 @@ public class BirthdayStrategy implements DiscountStrategy {
   }
 
   /** Sets discount for birthday strategy. */
-  public void setDiscount(double discount) {
+  public void setDiscount(byte discount) {
     this.discount = discount;
   }
 
   /** Returns allowed days of difference for birthday strategy. */
-  public byte getAllowedDaysDifference() {
-    return allowedDaysDifference;
+  public byte getDiscountPeriod() {
+    return discountPeriod;
   }
 
   /** Sets allowed days of difference for birthday strategy. */
-  public void setAllowedDaysDifference(byte allowedDaysDifference) {
-    this.allowedDaysDifference = allowedDaysDifference;
+  public void setDiscountPeriod(byte discountPeriod) {
+    this.discountPeriod = discountPeriod;
   }
 }

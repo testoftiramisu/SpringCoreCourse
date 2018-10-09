@@ -18,7 +18,7 @@ public interface DiscountService {
    * @param airDateTime The date and time event will be aired
    * @param numberOfTickets Number of tickets that user buys
    */
-  double getDiscount(
+  byte getDiscount(
       @Nullable User user,
       @Nonnull Event event,
       @Nonnull LocalDateTime airDateTime,

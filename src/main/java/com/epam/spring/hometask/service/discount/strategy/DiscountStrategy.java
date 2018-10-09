@@ -17,7 +17,7 @@ public interface DiscountStrategy {
    * @param dateTime Date and time of aired event for which to calculate discount strategy
    * @param numberOfTickets number of tickets that user buys
    */
-  double calculateDiscount(
+  byte calculateDiscount(
       @Nullable User user,
       @Nonnull Event event,
       @Nonnull LocalDateTime dateTime,

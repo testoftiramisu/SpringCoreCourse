@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:u="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <import resource="../../../common/properties.xml"/>
+    <import resource="../../../domain/dates.xml"/>
+
+    <bean id="birthdayStrategy"
+          class="com.epam.spring.hometask.service.discount.strategy.BirthdayStrategy">
+        <constructor-arg index="0" value="${birthday.discount}"/>
+        <constructor-arg index="1" value="${birthday.period}"/>
+    </bean>
+
+    <bean id="birthdayUser" class="com.epam.spring.hometask.domain.User">
+        <constructor-arg name="firstName" value="BirthdayName"/>
+        <constructor-arg name="lastName" value="BirthdayLastName"/>
+        <constructor-arg name="email" value="testBirthdayUser@email.com"/>
+    </bean>
+
+    <bean id="birthdayEvent" class="com.epam.spring.hometask.domain.Event">
+        <property name="name" value="Birthday event"/>
+        <property name="rating" value="MID"/>
+        <property name="basePrice" value="10"/>
+    </bean>
+
+    <bean id="ticket1" class="com.epam.spring.hometask.domain.Ticket">
+        <constructor-arg name="seat" value="1"/>
+        <constructor-arg name="dateTime" ref="dateTimeNow"/>
+        <constructor-arg name="event" ref="birthdayEvent"/>
+        <constructor-arg name="user" ref="birthdayUser"/>
+    </bean>
+
+    <bean id="ticket2" class="com.epam.spring.hometask.domain.Ticket">
+        <constructor-arg name="seat" value="2"/>
+        <constructor-arg name="dateTime" ref="dateTimeNow"/>
+        <constructor-arg name="event" ref="birthdayEvent"/>
+        <constructor-arg name="user" ref="birthdayUser"/>
+    </bean>
+
+    <bean id="ticket3" class="com.epam.spring.hometask.domain.Ticket">
+        <constructor-arg name="seat" value="3"/>
+        <constructor-arg name="dateTime" ref="dateTimeNow"/>
+        <constructor-arg name="event" ref="birthdayEvent"/>
+        <constructor-arg name="user" ref="birthdayUser"/>
+    </bean>
+
+    <u:set id="tickets" set-class="java.util.TreeSet">
+        <ref bean="ticket1"/>
+        <ref bean="ticket2"/>
+        <ref bean="ticket3"/>
+    </u:set>
+
+
+</beans>
+

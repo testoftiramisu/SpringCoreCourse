@@ -23,23 +23,23 @@ public class CinemaDiscountService implements DiscountService {
    * @param numberOfTickets Number of tickets that user buys
    */
   @Override
-  public double getDiscount(
+  public byte getDiscount(
       @Nullable User user,
       @Nonnull Event event,
       @Nonnull LocalDateTime airDateTime,
       long numberOfTickets) {
-    double maxDiscount = 0;
+    byte discount = 0;
 
     for (DiscountStrategy discountStrategy : discountStrategies) {
-      double currentDiscountOfStrategy =
+      byte currentDiscount =
           discountStrategy.calculateDiscount(user, event, airDateTime, numberOfTickets);
 
-      if (currentDiscountOfStrategy > maxDiscount) {
-        maxDiscount = currentDiscountOfStrategy;
+      if (currentDiscount > discount) {
+        discount = currentDiscount;
       }
     }
 
-    return maxDiscount;
+    return discount;
   }
 
   public void setDiscountStrategies(List<DiscountStrategy> discountStrategies) {
