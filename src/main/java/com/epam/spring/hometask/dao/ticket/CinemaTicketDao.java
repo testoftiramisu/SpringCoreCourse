@@ -9,12 +9,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CinemaTicketDao implements TicketDao {
-  private Map<Long, Ticket> tickets;
+  private Map<Long, Ticket> tickets = new HashMap<>();
   private IdGeneratorService idGeneratorService;
 
   public CinemaTicketDao(IdGeneratorService idGeneratorService) {
     this.idGeneratorService = idGeneratorService;
-    tickets = new HashMap<>();
   }
 
   /**

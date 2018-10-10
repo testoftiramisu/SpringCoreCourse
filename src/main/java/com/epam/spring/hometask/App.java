@@ -35,4 +35,24 @@ public class App {
 
     context.close();
   }
+
+  public AuditoriumService getAuditoriumService() {
+    return auditoriumService;
+  }
+
+  public BookingService getBookingService() {
+    return bookingService;
+  }
+
+  public DiscountService getDiscountService() {
+    return discountService;
+  }
+
+  public EventService getEventService() {
+    return eventService;
+  }
+
+  public UserService getUserService() {
+    return userService;
+  }
 }

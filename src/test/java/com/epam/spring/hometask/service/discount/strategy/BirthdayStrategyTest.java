@@ -37,6 +37,7 @@ public class BirthdayStrategyTest {
     user.setTickets(tickets);
     user.setBirthday(now.toLocalDate().plusDays(3));
 
-    assertThat(birthdayStrategy.calculateDiscount(user, event, now.plusDays(1), 5)).isEqualTo((byte)5);
+    assertThat(birthdayStrategy.calculateDiscount(user, event, now.plusDays(1), 5))
+        .isEqualTo((byte) 5);
   }
 }
