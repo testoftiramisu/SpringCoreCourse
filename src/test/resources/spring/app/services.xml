@@ -20,7 +20,6 @@
     <bean id="bookingService"
           class="com.epam.spring.hometask.service.booking.CinemaBookingService">
         <constructor-arg ref="ticketDao"/>
-        <constructor-arg ref="eventDao"/>
     </bean>
 
     <bean id="discountService"

@@ -1,4 +1,4 @@
-package com.epam.spring.hometask;
+package com.epam.spring.hometask.app;
 
 import com.epam.spring.hometask.service.auditorium.AuditoriumService;
 import com.epam.spring.hometask.service.booking.BookingService;
@@ -7,14 +7,14 @@ import com.epam.spring.hometask.service.event.EventService;
 import com.epam.spring.hometask.service.user.UserService;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppTest {
 
-  private final ClassPathXmlApplicationContext context =
-      new ClassPathXmlApplicationContext("spring/app/spring.xml");
+  private final ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
   private App app;
   private AuditoriumService auditoriumService;
   private BookingService bookingService;
@@ -23,8 +23,8 @@ public class AppTest {
   private UserService userService;
 
   @Before
-  public void setUp() throws Exception {
-    app = context.getBean(App.class);
+  public void setUp() {
+    app = ctx.getBean(App.class);
   }
 
   @Test
@@ -58,20 +58,17 @@ public class AppTest {
   }
 
   @Test
-  public void checkContext() {
-    auditoriumService = context.getBean(AuditoriumService.class);
+  public void checkAnnotatedContext() {
+    auditoriumService = ctx.getBean(AuditoriumService.class);
+    bookingService = ctx.getBean(BookingService.class);
+    discountService = ctx.getBean(DiscountService.class);
+    eventService = ctx.getBean(EventService.class);
+    userService = ctx.getBean(UserService.class);
+
     assertThat(auditoriumService).isNotNull();
-
-    bookingService = context.getBean(BookingService.class);
     assertThat(bookingService).isNotNull();
-
-    discountService = context.getBean(DiscountService.class);
     assertThat(discountService).isNotNull();
-
-    eventService = context.getBean(EventService.class);
     assertThat(eventService).isNotNull();
-
-    userService = context.getBean(UserService.class);
     assertThat(userService).isNotNull();
   }
 }

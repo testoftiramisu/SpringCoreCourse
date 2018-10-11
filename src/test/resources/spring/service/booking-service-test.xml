@@ -9,7 +9,6 @@
 
     <bean id="eventService" class="com.epam.spring.hometask.service.booking.CinemaBookingService">
         <constructor-arg ref="ticketDao"/>
-        <constructor-arg ref="eventDao"/>
         <property name="highRateCoefficient" value="${highRateCoefficient}"/>
         <property name="vipSeatsCoefficient" value="${vipSeatsCoefficient}"/>
     </bean>

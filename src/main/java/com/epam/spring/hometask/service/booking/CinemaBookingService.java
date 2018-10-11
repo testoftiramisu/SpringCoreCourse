@@ -1,6 +1,5 @@
 package com.epam.spring.hometask.service.booking;
 
-import com.epam.spring.hometask.dao.event.EventDao;
 import com.epam.spring.hometask.dao.ticket.TicketDao;
 import com.epam.spring.hometask.domain.Auditorium;
 import com.epam.spring.hometask.domain.Event;
@@ -19,7 +18,7 @@ public class CinemaBookingService implements BookingService {
   private double highRateCoefficient;
   private TicketDao tickets;
 
-  public CinemaBookingService(TicketDao tickets, EventDao events) {
+  public CinemaBookingService(TicketDao tickets) {
     this.tickets = tickets;
   }
 

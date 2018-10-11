@@ -6,7 +6,7 @@
 
     <import resource="services.xml"/>
 
-    <bean id="app" class="com.epam.spring.hometask.App">
+    <bean id="app" class="com.epam.spring.hometask.app.App">
         <constructor-arg name="userService" ref="userService"/>
         <constructor-arg name="eventService" ref="eventService"/>
         <constructor-arg name="auditoriumService" ref="auditoriumService"/>

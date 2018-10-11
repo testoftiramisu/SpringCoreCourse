@@ -1,4 +1,4 @@
-package com.epam.spring.hometask;
+package com.epam.spring.hometask.app;
 
 import com.epam.spring.hometask.service.auditorium.AuditoriumService;
 import com.epam.spring.hometask.service.booking.BookingService;
@@ -16,7 +16,7 @@ public class App {
   private EventService eventService;
   private UserService userService;
 
-  public App(
+  App(
       AuditoriumService auditoriumService,
       BookingService bookingService,
       DiscountService discountService,
@@ -36,15 +36,15 @@ public class App {
     context.close();
   }
 
-  public AuditoriumService getAuditoriumService() {
+  AuditoriumService getAuditoriumService() {
     return auditoriumService;
   }
 
-  public BookingService getBookingService() {
+  BookingService getBookingService() {
     return bookingService;
   }
 
-  public DiscountService getDiscountService() {
+  DiscountService getDiscountService() {
     return discountService;
   }
 
@@ -52,7 +52,7 @@ public class App {
     return eventService;
   }
 
-  public UserService getUserService() {
+  UserService getUserService() {
     return userService;
   }
 }
