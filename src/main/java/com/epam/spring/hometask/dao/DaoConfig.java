@@ -9,7 +9,6 @@ import com.epam.spring.hometask.dao.ticket.TicketDao;
 import com.epam.spring.hometask.dao.user.CinemaUserDao;
 import com.epam.spring.hometask.dao.user.UserDao;
 import com.epam.spring.hometask.service.id.IdGeneratorService;
-import com.epam.spring.hometask.service.id.RandomIdGeneratorService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,11 +16,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan(basePackages = {"com.epam.spring.hometask"})
 public class DaoConfig {
-
-  @Bean
-  public IdGeneratorService getRandomIdGeneratorService() {
-    return new RandomIdGeneratorService();
-  }
 
   @Bean
   public AuditoriumDao getAuditoriumDao(IdGeneratorService idGenerator) {
