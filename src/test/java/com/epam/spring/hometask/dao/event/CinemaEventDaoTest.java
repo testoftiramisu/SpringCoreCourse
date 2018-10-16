@@ -3,13 +3,14 @@ package com.epam.spring.hometask.dao.event;
 import com.epam.spring.hometask.domain.Event;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CinemaEventDaoTest {
-  private final ClassPathXmlApplicationContext context =
-      new ClassPathXmlApplicationContext("spring/dao/event-dao-test.xml");
+  private final ApplicationContext context =
+      new AnnotationConfigApplicationContext(CinemaEventDaoTestConfig.class);
   private EventDao eventDao;
   private Event event;
 

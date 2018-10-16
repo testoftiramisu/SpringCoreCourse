@@ -3,7 +3,8 @@ package com.epam.spring.hometask.dao.auditorium;
 import com.epam.spring.hometask.domain.Auditorium;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Collections;
 
@@ -12,8 +13,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CinemaAuditoriumDaoTest {
   private static final String MULTIKINO = "Multikino";
   private static final String IMAX = "IMAX";
-  private ClassPathXmlApplicationContext context =
-      new ClassPathXmlApplicationContext("spring/dao/auditorium-dao-test.xml");
+  private final ApplicationContext context =
+      new AnnotationConfigApplicationContext(CinemaAuditoriumDaoTestConfig.class);
   private AuditoriumDao auditoriumDao;
   private Auditorium newAuditorium;
 

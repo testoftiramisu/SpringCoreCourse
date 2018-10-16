@@ -13,8 +13,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppTest {
-
-  private final ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+  private final ApplicationContext context =
+      new AnnotationConfigApplicationContext(AppConfig.class);
   private App app;
   private AuditoriumService auditoriumService;
   private BookingService bookingService;
@@ -24,7 +24,7 @@ public class AppTest {
 
   @Before
   public void setUp() {
-    app = ctx.getBean(App.class);
+    app = context.getBean(App.class);
   }
 
   @Test
@@ -58,17 +58,37 @@ public class AppTest {
   }
 
   @Test
-  public void checkAnnotatedContext() {
-    auditoriumService = ctx.getBean(AuditoriumService.class);
-    bookingService = ctx.getBean(BookingService.class);
-    discountService = ctx.getBean(DiscountService.class);
-    eventService = ctx.getBean(EventService.class);
-    userService = ctx.getBean(UserService.class);
+  public void checkAuditoriumServiceContext() {
+    auditoriumService = context.getBean(AuditoriumService.class);
 
     assertThat(auditoriumService).isNotNull();
+  }
+
+  @Test
+  public void checkBookingServiceContext() {
+    bookingService = context.getBean(BookingService.class);
+
     assertThat(bookingService).isNotNull();
+  }
+
+  @Test
+  public void checkDiscountServiceContext() {
+    discountService = context.getBean(DiscountService.class);
+
     assertThat(discountService).isNotNull();
+  }
+
+  @Test
+  public void checkEventServiceContext() {
+    eventService = context.getBean(EventService.class);
+
     assertThat(eventService).isNotNull();
+  }
+
+  @Test
+  public void checkUserServiceContext() {
+    userService = context.getBean(UserService.class);
+
     assertThat(userService).isNotNull();
   }
 }

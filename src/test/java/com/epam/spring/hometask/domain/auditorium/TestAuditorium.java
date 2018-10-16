@@ -1,5 +1,6 @@
-package com.epam.spring.hometask.domain;
+package com.epam.spring.hometask.domain.auditorium;
 
+import com.epam.spring.hometask.domain.Auditorium;
 import org.junit.Before;
 import org.junit.Test;
 

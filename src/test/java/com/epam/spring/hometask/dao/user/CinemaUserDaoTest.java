@@ -3,13 +3,14 @@ package com.epam.spring.hometask.dao.user;
 import com.epam.spring.hometask.domain.User;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CinemaUserDaoTest {
-  private final ClassPathXmlApplicationContext context =
-      new ClassPathXmlApplicationContext("spring/dao/user-dao-test.xml");
+  private final ApplicationContext context =
+      new AnnotationConfigApplicationContext(CinemaUserDaoTestConfig.class);
   private UserDao userDao;
   private User userTwo;
 

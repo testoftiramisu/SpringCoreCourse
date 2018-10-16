@@ -1,5 +1,8 @@
-package com.epam.spring.hometask.domain;
+package com.epam.spring.hometask.domain.event;
 
+import com.epam.spring.hometask.domain.Auditorium;
+import com.epam.spring.hometask.domain.Event;
+import com.epam.spring.hometask.domain.EventRating;
 import org.junit.Before;
 import org.junit.Test;
 
