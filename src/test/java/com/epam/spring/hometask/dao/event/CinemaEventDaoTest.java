@@ -15,7 +15,7 @@ public class CinemaEventDaoTest {
   private Event event;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     eventDao = context.getBean(EventDao.class);
     event = context.getBean("testEventTwo", Event.class);
   }

@@ -17,22 +17,22 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(basePackages = {"com.epam.spring.hometask"})
 public class DaoConfig {
 
-  @Bean
+  @Bean(name = "auditoriumDao")
   public AuditoriumDao getAuditoriumDao(IdGeneratorService idGenerator) {
     return new CinemaAuditoriumDao(idGenerator);
   }
 
-  @Bean
+  @Bean(name = "eventDao")
   public EventDao getEventDao(IdGeneratorService idGenerator) {
     return new CinemaEventDao(idGenerator);
   }
 
-  @Bean
+  @Bean(name = "ticketDao")
   public TicketDao getTicketDao(IdGeneratorService idGenerator) {
     return new CinemaTicketDao(idGenerator);
   }
 
-  @Bean
+  @Bean(name = "userDao")
   public UserDao getUserDao(IdGeneratorService idGenerator) {
     return new CinemaUserDao(idGenerator);
   }

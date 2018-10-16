@@ -1,7 +1,7 @@
-package com.epam.spring.hometask.dao.user;
+package com.epam.spring.hometask.dao.ticket;
 
-import com.epam.spring.hometask.domain.User;
-import com.epam.spring.hometask.domain.user.UsersConfig;
+import com.epam.spring.hometask.domain.Ticket;
+import com.epam.spring.hometask.domain.ticket.TicketsConfig;
 import com.epam.spring.hometask.service.id.IdGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,22 +11,22 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@Import(UsersConfig.class)
+@Import(TicketsConfig.class)
 @ComponentScan(basePackages = {"com.epam.spring.hometask.service.id"})
-public class CinemaUserDaoTestConfig {
+public class CinemaTicketDaoTestConfig {
 
-  @Autowired UsersConfig usersConfig;
+  @Autowired TicketsConfig ticketsConfig;
 
   @Autowired IdGeneratorService idGeneratorService;
 
   @Autowired
-  @Qualifier("userOne")
-  User testUserOne;
+  @Qualifier("testTicketOne")
+  Ticket testTicketOne;
 
-  @Bean(name = "userDao")
-  UserDao getUserDao() {
-    UserDao userDao = new CinemaUserDao(idGeneratorService);
-    userDao.save(testUserOne);
-    return userDao;
+  @Bean(name = "ticketDao")
+  TicketDao getTicketDao(IdGeneratorService idGenerator) {
+    TicketDao ticketDao = new CinemaTicketDao(idGeneratorService);
+    ticketDao.save(testTicketOne);
+    return ticketDao;
   }
 }
