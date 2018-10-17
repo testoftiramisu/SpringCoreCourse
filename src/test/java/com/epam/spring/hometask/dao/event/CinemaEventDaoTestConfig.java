@@ -23,7 +23,7 @@ public class CinemaEventDaoTestConfig {
   @Qualifier("testEventOne")
   Event testEventOne;
 
-  @Bean(name = "eventDao")
+  @Bean(name = "eventTestDao")
   EventDao getEventDao(IdGeneratorService idGenerator) {
     EventDao eventDao = new CinemaEventDao(idGeneratorService);
     eventDao.save(testEventOne);

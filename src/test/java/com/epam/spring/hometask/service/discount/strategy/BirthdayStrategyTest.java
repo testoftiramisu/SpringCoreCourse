@@ -5,7 +5,8 @@ import com.epam.spring.hometask.domain.Ticket;
 import com.epam.spring.hometask.domain.User;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.time.LocalDateTime;
 import java.util.TreeSet;
@@ -14,9 +15,8 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class BirthdayStrategyTest {
 
-  private final ClassPathXmlApplicationContext context =
-      new ClassPathXmlApplicationContext(
-          "spring/service/discount/strategy/birthday-strategy-test.xml");
+  private final ApplicationContext context =
+      new AnnotationConfigApplicationContext(BirthdayStrategyTestConfig.class);
   private BirthdayStrategy birthdayStrategy;
   private User user;
   private Event event;
@@ -28,7 +28,7 @@ public class BirthdayStrategyTest {
     birthdayStrategy = context.getBean(BirthdayStrategy.class);
     user = context.getBean(User.class);
     event = context.getBean(Event.class);
-    tickets = context.getBean("tickets", TreeSet.class);
+    tickets = context.getBean("birthdayTickets", TreeSet.class);
   }
 
   @Test

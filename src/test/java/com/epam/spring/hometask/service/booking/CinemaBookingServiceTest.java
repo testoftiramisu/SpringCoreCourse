@@ -5,7 +5,8 @@ import com.epam.spring.hometask.domain.Event;
 import com.epam.spring.hometask.domain.Ticket;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -17,8 +18,8 @@ import java.util.TreeSet;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CinemaBookingServiceTest {
-  private final ClassPathXmlApplicationContext context =
-      new ClassPathXmlApplicationContext("spring/service/booking-service-test.xml");
+  private final ApplicationContext context =
+      new AnnotationConfigApplicationContext(CinemaBookingServiceTestConfig.class);
   private final LocalDateTime now = context.getBean("dateTimeNow", LocalDateTime.class);
   private final Event testEventTwo = context.getBean("testEventTwo", Event.class);
   private final Auditorium auditorium = context.getBean("multikino", Auditorium.class);

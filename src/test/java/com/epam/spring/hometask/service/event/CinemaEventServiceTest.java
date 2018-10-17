@@ -3,14 +3,15 @@ package com.epam.spring.hometask.service.event;
 import com.epam.spring.hometask.domain.Event;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CinemaEventServiceTest {
 
-  private final ClassPathXmlApplicationContext context =
-      new ClassPathXmlApplicationContext("spring/service/event-service-test.xml");
+  private final ApplicationContext context =
+      new AnnotationConfigApplicationContext(CinemaEventServiceTestConfig.class);
   private final Event testEventOne = context.getBean("testEventOne", Event.class);
   private final Event testEventTwo = context.getBean("testEventTwo", Event.class);
   private EventService service;

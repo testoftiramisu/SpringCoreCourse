@@ -23,7 +23,7 @@ public class CinemaUserDaoTestConfig {
   @Qualifier("userOne")
   User testUserOne;
 
-  @Bean(name = "userDao")
+  @Bean(name = "userTestDao")
   UserDao getUserDao() {
     UserDao userDao = new CinemaUserDao(idGeneratorService);
     userDao.save(testUserOne);

@@ -18,13 +18,11 @@ import com.epam.spring.hometask.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import(DaoConfig.class)
-@ComponentScan("com.epam.spring.hometask.service")
 public class ServiceConfig {
 
   @Autowired
@@ -43,27 +41,27 @@ public class ServiceConfig {
   @Qualifier("ticketDao")
   TicketDao ticketDao;
 
-  @Bean
+  @Bean(name = "auditoriumService")
   public AuditoriumService getAuditoriumService() {
     return new CinemaAuditoriumService(auditoriumDao);
   }
 
-  @Bean
+  @Bean(name = "userService")
   public UserService getUserService() {
     return new CinemaUserService(userDao);
   }
 
-  @Bean
+  @Bean(name = "eventService")
   public EventService getEventService() {
     return new CinemaEventService(eventDao);
   }
 
-  @Bean
+  @Bean(name = "bookingService")
   public BookingService produceBookingService() {
     return new CinemaBookingService(ticketDao);
   }
 
-  @Bean
+  @Bean(name = "discountService")
   public DiscountService getDiscountService() {
     return new CinemaDiscountService();
   }

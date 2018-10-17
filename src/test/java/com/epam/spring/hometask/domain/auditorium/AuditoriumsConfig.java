@@ -1,7 +1,7 @@
 package com.epam.spring.hometask.domain.auditorium;
 
 import com.epam.spring.hometask.domain.Auditorium;
-import com.epam.spring.hometask.properties.PropertyConfig;
+import com.epam.spring.hometask.properties.PropertiesConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Configuration
-@Import(PropertyConfig.class)
+@Import(PropertiesConfig.class)
 public class AuditoriumsConfig {
 
   @Value("${imax.name}")

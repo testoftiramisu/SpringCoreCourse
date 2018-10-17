@@ -23,7 +23,7 @@ public class CinemaTicketDaoTestConfig {
   @Qualifier("testTicketOne")
   Ticket testTicketOne;
 
-  @Bean(name = "ticketDao")
+  @Bean(name = "ticketTestDao")
   TicketDao getTicketDao(IdGeneratorService idGenerator) {
     TicketDao ticketDao = new CinemaTicketDao(idGeneratorService);
     ticketDao.save(testTicketOne);

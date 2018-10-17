@@ -3,14 +3,15 @@ package com.epam.spring.hometask.service.user;
 import com.epam.spring.hometask.domain.User;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CinemaUserServiceTest {
 
-  private final ClassPathXmlApplicationContext context =
-      new ClassPathXmlApplicationContext("spring/service/user-service-test.xml");
+  private final ApplicationContext context =
+      new AnnotationConfigApplicationContext(CinemaUserServiceTestConfig.class);
   private UserService service;
   private User userTwo;
   private User userOne;

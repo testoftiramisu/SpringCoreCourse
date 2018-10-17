@@ -17,7 +17,7 @@ public class CinemaAuditoriumDaoTestConfig {
 
   @Autowired AuditoriumsConfig auditoriumsConfig;
 
-  @Bean
+  @Bean(name = "auditoriumTestDao")
   AuditoriumDao getAuditoriumDao(IdGeneratorService idGenerator) {
     AuditoriumDao auditoriumDao = new CinemaAuditoriumDao(idGenerator);
     auditoriumDao.setAuditoriums(Collections.singletonList(auditoriumsConfig.getImax()));

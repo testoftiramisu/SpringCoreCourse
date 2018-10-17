@@ -11,7 +11,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
   "classpath:properties/booking.properties",
   "classpath:properties/discount-strategy.properties"
 })
-public class PropertyConfig {
+public class PropertiesConfig {
 
   @Bean
   public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
