@@ -12,7 +12,7 @@
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <spring.version>3.2.16.RELEASE</spring.version>
+        <spring.version>5.1.1.RELEASE</spring.version>
         <findbugs.version>3.0.1</findbugs.version>
         <junit.version>4.12</junit.version>
     </properties>
@@ -107,13 +107,11 @@
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>jsr305</artifactId>
             <version>${findbugs.version}</version>
         </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -135,6 +133,16 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>1.8.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.197</version>
         </dependency>
     </dependencies>
     <organization>

@@ -1,4 +1,4 @@
-package com.epam.spring.hometask.dao;
+package com.epam.spring.hometask.dao.config;
 
 import com.epam.spring.hometask.dao.auditorium.AuditoriumDao;
 import com.epam.spring.hometask.dao.auditorium.CinemaAuditoriumDao;

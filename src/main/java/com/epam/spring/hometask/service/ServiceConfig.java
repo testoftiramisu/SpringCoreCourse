@@ -1,6 +1,6 @@
 package com.epam.spring.hometask.service;
 
-import com.epam.spring.hometask.dao.DaoConfig;
+import com.epam.spring.hometask.dao.config.DaoConfig;
 import com.epam.spring.hometask.dao.auditorium.AuditoriumDao;
 import com.epam.spring.hometask.dao.event.EventDao;
 import com.epam.spring.hometask.dao.ticket.TicketDao;
