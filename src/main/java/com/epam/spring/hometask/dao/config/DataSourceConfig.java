@@ -18,6 +18,9 @@ public class DataSourceConfig {
 
   @Bean(name = "dataSource")
   public DataSource getDataSource() {
-    return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
+    return new EmbeddedDatabaseBuilder()
+        .setType(EmbeddedDatabaseType.H2)
+        .addScript("data/schema.sql")
+        .build();
   }
 }

@@ -1,5 +1,6 @@
 package com.epam.spring.hometask.dao.user;
 
+import com.epam.spring.hometask.dao.config.DataSourceConfig;
 import com.epam.spring.hometask.domain.User;
 import com.epam.spring.hometask.domain.user.UsersConfig;
 import com.epam.spring.hometask.service.id.IdGeneratorService;
@@ -11,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@Import(UsersConfig.class)
+@Import({UsersConfig.class, DataSourceConfig.class})
 @ComponentScan(basePackages = {"com.epam.spring.hometask.service.id"})
 public class CinemaUserDaoTestConfig {
 

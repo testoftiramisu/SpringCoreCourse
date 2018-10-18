@@ -1,8 +1,10 @@
 package com.epam.spring.hometask.domain.user;
 
+import com.epam.spring.hometask.dao.config.DataSourceConfig;
 import com.epam.spring.hometask.domain.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Scope;
 
 @Configuration

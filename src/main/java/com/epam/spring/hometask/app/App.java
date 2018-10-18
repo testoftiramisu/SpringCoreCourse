@@ -7,7 +7,6 @@ import com.epam.spring.hometask.service.event.EventService;
 import com.epam.spring.hometask.service.user.UserService;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
 
@@ -31,8 +30,11 @@ public class App {
   }
 
   public static void main(String[] args) {
-    ConfigurableApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+    ConfigurableApplicationContext context =
+        new AnnotationConfigApplicationContext(AppConfig.class);
     App app = context.getBean(App.class);
+
+    System.out.println(app.getEventService().getAll());
 
     context.close();
   }

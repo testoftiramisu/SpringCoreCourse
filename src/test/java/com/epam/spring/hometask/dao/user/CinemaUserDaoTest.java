@@ -26,21 +26,21 @@ public class CinemaUserDaoTest {
   }
 
   @Test
-  public void shouldSaveEventAndGetItById() {
+  public void shouldSaveUserAndGetItById() {
     Long id = userDao.save(userTwo);
 
     assertThat(userDao.getById(id)).isEqualTo(userTwo);
   }
 
   @Test
-  public void shouldSaveEvent() {
+  public void shouldSaveUser() {
     userDao.save(userTwo);
 
     assertThat(userDao.getAll()).contains(userTwo);
   }
 
   @Test
-  public void shouldRemoveEvent() {
+  public void shouldRemoveUser() {
     userDao.save(userTwo);
 
     userDao.remove(userTwo);

@@ -13,6 +13,8 @@ public class User extends DomainObject {
   private LocalDate birthday;
   private NavigableSet<Ticket> tickets = new TreeSet<>();
 
+  public User() {}
+
   public User(String firstName, String lastName, String email) {
     this.firstName = firstName;
     this.lastName = lastName;
