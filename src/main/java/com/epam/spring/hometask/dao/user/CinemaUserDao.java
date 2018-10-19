@@ -79,7 +79,7 @@ public class CinemaUserDao implements UserDao {
     if (id != null) {
       jdbcTemplate.update(UPDATE, user.getFirstName(), user.getLastName(), user.getEmail(), id);
     } else {
-      id = idGeneratorService.generateId();
+      id = idGeneratorService.getId();
       user.setId(id);
       jdbcTemplate.update(SAVE, id, user.getFirstName(), user.getLastName(), user.getEmail());
     }

@@ -33,11 +33,7 @@ public class CinemaAuditoriumDao implements AuditoriumDao {
    */
   @Override
   public void addAuditorium(Auditorium auditorium) {
-    Long id = idGeneratorService.generateId();
-
-    while (auditoriums.containsKey(id)) {
-      id = idGeneratorService.generateId();
-    }
+    Long id = idGeneratorService.getId();
 
     auditoriums.put(id, auditorium);
   }

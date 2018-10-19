@@ -8,13 +8,12 @@ import java.util.Random;
 @Component
 public class RandomIdGeneratorService implements IdGeneratorService {
   private static final long BASE = 100_000L;
-  private static final long SEED = 100_000L;
-
-  private final Random random = new Random(SEED);
+  private Long id;
 
   /** Returns randomly generated id. */
   @Override
-  public Long generateId() {
-    return random.nextLong() + BASE;
+  public Long getId() {
+    Random random = new Random();
+    return Math.abs(random.nextLong()) + BASE;
   }
 }

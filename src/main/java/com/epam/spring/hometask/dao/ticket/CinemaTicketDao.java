@@ -52,12 +52,7 @@ public class CinemaTicketDao implements TicketDao {
    */
   @Override
   public Long save(Ticket ticket) {
-    Long id = idGeneratorService.generateId();
-
-    while (tickets.containsKey(id)) {
-      id = idGeneratorService.generateId();
-    }
-
+    Long id = idGeneratorService.getId();
     tickets.put(id, ticket);
     return id;
   }

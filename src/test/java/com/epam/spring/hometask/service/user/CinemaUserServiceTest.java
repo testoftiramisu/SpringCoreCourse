@@ -1,6 +1,7 @@
 package com.epam.spring.hometask.service.user;
 
 import com.epam.spring.hometask.domain.User;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -17,10 +18,16 @@ public class CinemaUserServiceTest {
   private User userOne;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     service = context.getBean(UserService.class);
     userTwo = context.getBean("userTwo", User.class);
     userOne = context.getBean("userOne", User.class);
+    service.save(userOne);
+  }
+
+  @After
+  public void tearDown() {
+    service.remove(userOne);
   }
 
   @Test

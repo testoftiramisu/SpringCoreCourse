@@ -1,6 +1,7 @@
 package com.epam.spring.hometask.dao.user;
 
 import com.epam.spring.hometask.domain.User;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -13,11 +14,19 @@ public class CinemaUserDaoTest {
       new AnnotationConfigApplicationContext(CinemaUserDaoTestConfig.class);
   private UserDao userDao;
   private User userTwo;
+  private User userOne;
 
   @Before
   public void setUp() throws Exception {
     userDao = context.getBean(UserDao.class);
     userTwo = context.getBean("userTwo", User.class);
+    userOne = context.getBean("userOne", User.class);
+    userDao.save(userOne);
+  }
+
+  @After
+  public void tearDown() {
+    userDao.remove(userOne);
   }
 
   @Test
@@ -30,6 +39,7 @@ public class CinemaUserDaoTest {
     Long id = userDao.save(userTwo);
 
     assertThat(userDao.getById(id)).isEqualTo(userTwo);
+    userDao.remove(userTwo);
   }
 
   @Test
@@ -37,6 +47,7 @@ public class CinemaUserDaoTest {
     userDao.save(userTwo);
 
     assertThat(userDao.getAll()).contains(userTwo);
+    userDao.remove(userTwo);
   }
 
   @Test

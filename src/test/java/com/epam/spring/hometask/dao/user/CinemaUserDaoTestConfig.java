@@ -26,8 +26,6 @@ public class CinemaUserDaoTestConfig {
 
   @Bean(name = "userTestDao")
   UserDao getUserDao() {
-    UserDao userDao = new CinemaUserDao(idGeneratorService);
-    userDao.save(testUserOne);
-    return userDao;
+    return new CinemaUserDao(idGeneratorService);
   }
 }

@@ -52,12 +52,7 @@ public class CinemaEventDao implements EventDao {
    */
   @Override
   public Long save(Event event) {
-    Long id = idGeneratorService.generateId();
-
-    while (events.containsKey(id)) {
-      id = idGeneratorService.generateId();
-    }
-
+    Long id = idGeneratorService.getId();
     events.put(id, event);
     return id;
   }
