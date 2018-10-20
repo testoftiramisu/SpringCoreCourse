@@ -1,6 +1,7 @@
 package com.epam.spring.hometask.dao.event;
 
 import com.epam.spring.hometask.domain.Event;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -12,12 +13,20 @@ public class CinemaEventDaoTest {
   private final ApplicationContext context =
       new AnnotationConfigApplicationContext(CinemaEventDaoTestConfig.class);
   private EventDao eventDao;
-  private Event event;
+  private Event eventOne;
+  private Event eventTwo;
 
   @Before
   public void setUp() {
     eventDao = context.getBean(EventDao.class);
-    event = context.getBean("testEventTwo", Event.class);
+    eventOne = context.getBean("testEventOne", Event.class);
+    eventTwo = context.getBean("testEventTwo", Event.class);
+    eventDao.save(eventOne);
+  }
+
+  @After
+  public void tearDown() {
+    eventDao.remove(eventOne);
   }
 
   @Test
@@ -27,24 +36,25 @@ public class CinemaEventDaoTest {
 
   @Test
   public void shouldSaveEventAndGetItById() {
-    Long id = eventDao.save(event);
+    Long id = eventDao.save(eventTwo);
 
-    assertThat(eventDao.getById(id)).isEqualTo(event);
+    assertThat(eventDao.getById(id)).isEqualTo(eventTwo);
+    eventDao.remove(eventTwo);
   }
 
   @Test
   public void shouldSaveEvent() {
-    eventDao.save(event);
+    eventDao.save(eventTwo);
 
-    assertThat(eventDao.getAll()).contains(event);
+    assertThat(eventDao.getAll()).contains(eventTwo);
+    eventDao.remove(eventTwo);
   }
 
   @Test
   public void shouldRemoveEvent() {
-    eventDao.save(event);
+    eventDao.save(eventTwo);
+    eventDao.remove(eventTwo);
 
-    eventDao.remove(event);
-
-    assertThat(eventDao.getAll()).doesNotContain(event);
+    assertThat(eventDao.getAll()).doesNotContain(eventTwo);
   }
 }

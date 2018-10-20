@@ -23,6 +23,7 @@ public class CinemaEventServiceTest {
 
   @Test
   public void shouldReturnEventByName() {
+    service.save(testEventOne);
     assertThat(service.getByName("Test Event One")).isEqualTo(testEventOne);
   }
 

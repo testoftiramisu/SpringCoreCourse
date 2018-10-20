@@ -25,8 +25,6 @@ public class CinemaEventDaoTestConfig {
 
   @Bean(name = "eventTestDao")
   EventDao getEventDao(IdGeneratorService idGenerator) {
-    EventDao eventDao = new CinemaEventDao(idGeneratorService);
-    eventDao.save(testEventOne);
-    return eventDao;
+    return new CinemaEventDao(idGeneratorService);
   }
 }

@@ -1,19 +1,30 @@
 package com.epam.spring.hometask.dao.event;
 
+import com.epam.spring.hometask.dao.config.DataSourceConfig;
 import com.epam.spring.hometask.domain.Event;
 import com.epam.spring.hometask.service.id.IdGeneratorService;
-import com.google.common.collect.ImmutableSet;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 public class CinemaEventDao implements EventDao {
-  private Map<Long, Event> events;
+  private static final String GET_ALL = "SELECT * FROM EVENTS";
+  private static final String GET_BY_ID = "SELECT * FROM EVENTS WHERE id = ?";
+  private static final String SAVE =
+      "INSERT INTO EVENTS (id, name, base_price) VALUES (?, ?, ?)";
+  private static final String UPDATE =
+      "UPDATE EVENTS SET name = ?, base_price = ? WHERE id = ?";
+  private static final String REMOVE = "DELETE FROM EVENTS WHERE id = ?";
+
+  private final ApplicationContext context =
+      new AnnotationConfigApplicationContext(DataSourceConfig.class);
   private IdGeneratorService idGeneratorService;
+  private JdbcTemplate jdbcTemplate = context.getBean("jdbcTemplate", JdbcTemplate.class);
 
   public CinemaEventDao(IdGeneratorService idGeneratorService) {
-    events = new HashMap<>();
     this.idGeneratorService = idGeneratorService;
   }
 
@@ -29,7 +40,7 @@ public class CinemaEventDao implements EventDao {
   /** Returns all {@link Event} from storage. */
   @Override
   public Collection<Event> getAll() {
-    return ImmutableSet.copyOf(events.values());
+    return jdbcTemplate.query(GET_ALL, new BeanPropertyRowMapper<>(Event.class));
   }
 
   /**
@@ -39,10 +50,8 @@ public class CinemaEventDao implements EventDao {
    */
   @Override
   public Event getById(Long id) {
-    if (events.containsKey(id)) {
-      return events.get(id);
-    }
-    return null;
+    return jdbcTemplate.queryForObject(
+        GET_BY_ID, new Object[] {id}, new BeanPropertyRowMapper<>(Event.class));
   }
 
   /**
@@ -52,8 +61,16 @@ public class CinemaEventDao implements EventDao {
    */
   @Override
   public Long save(Event event) {
-    Long id = idGeneratorService.getId();
-    events.put(id, event);
+    Long id = event.getId();
+
+    if (id != null) {
+      jdbcTemplate.update(UPDATE, event.getName(), event.getBasePrice(), id);
+    } else {
+      id = idGeneratorService.getId();
+      event.setId(id);
+      jdbcTemplate.update(SAVE, id, event.getName(), event.getBasePrice());
+    }
+
     return id;
   }
 
@@ -64,12 +81,6 @@ public class CinemaEventDao implements EventDao {
    */
   @Override
   public void remove(Event event) {
-    for (Long id : events.keySet()) {
-      Event currentEvent = events.get(id);
-      if (currentEvent.equals(event)) {
-        events.remove(id);
-        break;
-      }
-    }
+    jdbcTemplate.update(REMOVE, event.getId());
   }
 }
