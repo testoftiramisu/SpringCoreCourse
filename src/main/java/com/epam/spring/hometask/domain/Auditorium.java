@@ -12,6 +12,8 @@ public class Auditorium {
   private long numberOfSeats;
   private Set<Long> vipSeats;
 
+  public Auditorium() {}
+
   public Auditorium(String name, String numberOfSeats, Set<Long> vipSeats) {
     this.name = name;
     this.numberOfSeats = Long.parseLong(numberOfSeats);

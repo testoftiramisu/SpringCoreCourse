@@ -16,12 +16,12 @@ public class CinemaAuditoriumDaoTest {
   private final ApplicationContext context =
       new AnnotationConfigApplicationContext(CinemaAuditoriumDaoTestConfig.class);
   private AuditoriumDao auditoriumDao;
-  private Auditorium newAuditorium;
+  private Auditorium multikino;
 
   @Before
   public void setUp() {
     auditoriumDao = context.getBean(CinemaAuditoriumDao.class);
-    newAuditorium = context.getBean("multikino", Auditorium.class);
+    multikino = context.getBean("multikino", Auditorium.class);
   }
 
   @Test
@@ -38,16 +38,17 @@ public class CinemaAuditoriumDaoTest {
   public void shouldAddAuditorium() {
     assertThat(auditoriumDao.findByName(MULTIKINO)).isNull();
 
-    auditoriumDao.addAuditorium(newAuditorium);
+    auditoriumDao.addAuditorium(multikino);
 
     assertThat(auditoriumDao.findByName(MULTIKINO)).isNotNull();
+    auditoriumDao.remove(multikino);
   }
 
   @Test
   public void shouldSetAuditoriums() {
     assertThat(auditoriumDao.findByName(MULTIKINO)).isNull();
 
-    auditoriumDao.setAuditoriums(Collections.singletonList(newAuditorium));
+    auditoriumDao.setAuditoriums(Collections.singletonList(multikino));
 
     assertThat(auditoriumDao.findByName(MULTIKINO)).isNotNull();
   }

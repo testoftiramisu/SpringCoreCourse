@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS EVENTS
 (
   id BIGINT,
   name varchar,
-  base_price DOUBLE
+  base_price double
 );
 
 CREATE TABLE IF NOT EXISTS USERS
@@ -11,6 +11,13 @@ CREATE TABLE IF NOT EXISTS USERS
   first_name varchar,
   last_name varchar,
   email varchar
+);
+
+CREATE TABLE IF NOT EXISTS AUDITORIUM
+(
+ id BIGINT,
+ name varchar,
+ number_of_seats BIGINT
 );
 
 

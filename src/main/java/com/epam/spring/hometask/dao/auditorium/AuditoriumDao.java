@@ -30,4 +30,7 @@ public interface AuditoriumDao {
 
   /** Returns set of all auditoriums. */
   Set<Auditorium> getAll();
+
+  /** Remove {@link Auditorium} from storage. */
+  void remove(Auditorium auditorium);
 }

@@ -32,11 +32,6 @@ public class CinemaUserDao implements UserDao {
     this.idGeneratorService = idGeneratorService;
   }
 
-  /** Returns users. */
-  public Collection<User> getUsers() {
-    return jdbcTemplate.query(GET_ALL, new BeanPropertyRowMapper<>(User.class));
-  }
-
   /** Saves all users from provided {@link Collection}. */
   public void setUsers(Collection<User> users) {
     for (User user : users) {
