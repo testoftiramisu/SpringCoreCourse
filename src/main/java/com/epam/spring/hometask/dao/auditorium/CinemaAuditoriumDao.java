@@ -20,6 +20,7 @@ public class CinemaAuditoriumDao implements AuditoriumDao {
   private static final String UPDATE =
       "UPDATE AUDITORIUM SET name = ?, number_of_seats = ? WHERE id = ?";
   private static final String REMOVE = "DELETE FROM AUDITORIUM WHERE name = ?";
+
   private final ApplicationContext context =
       new AnnotationConfigApplicationContext(DataSourceConfig.class);
   private IdGeneratorService idGeneratorService;

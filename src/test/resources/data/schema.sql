@@ -20,5 +20,9 @@ CREATE TABLE IF NOT EXISTS AUDITORIUM
  number_of_seats BIGINT
 );
 
-
-
+CREATE TABLE IF NOT EXISTS counters
+(
+  event_name varchar(100),
+  target     varchar(100),
+  counter    BIGINT default 0
+);
